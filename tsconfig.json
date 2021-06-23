@@ -1,0 +1,42 @@
+{
+    //"extends": "../../tsconfig.json",
+    "compilerOptions": {
+      "baseUrl": ".",
+      "allowJs": true,
+      "module": "commonjs",
+      "target": "es2019",
+      "lib": ["es2018", "dom"],
+      "paths": {
+        "*": [
+          "./*"
+        ]
+      },
+      "outDir": "./lib",
+      "types": [
+        "node",
+        "jquery",
+        "@wdio/sync",
+        "@wdio/mocha-framework",
+        "chai-webdriverio"
+      ],
+      "noImplicitAny": false, 
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    },
+    "include": [
+      "**/*.spec.ts",
+      "**/*.ts",
+      "**/*json"
+    ],
+    "exclude": [
+      "node_modules",
+      "lib"
+    ]
+  
+  }
