@@ -20,6 +20,17 @@ exports.config = {
     specs: [
         './lib/specs/*.e2e.js',
     ],
+    suites: {
+        wdio1: [
+            './lib/specs/wdio_3.1.e2e.js'
+        ],
+        wdio2: [
+            './lib/specs/wdio_3.2.e2e.js'
+        ],
+        wdio3: [
+            './lib/specs/wdio_3.3.e2e.js'
+        ]
+    },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -52,6 +63,9 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: ["--start-maximized"],
+        },
     }],
     //
     // ===================
@@ -73,7 +87,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://the-internet.herokuapp.com',
+    //baseUrl: 'http://the-internet.herokuapp.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

@@ -7,14 +7,15 @@ export class HotelPage {
    protected get starRatingsHotel () : WebdriverIO.Element[] { return $$('dd[class=fi-star-rating]')};
    protected get hotelNameSort () : WebdriverIO.Element { return $('button[data-qaid=Button_SortByHotelName]')}
    protected get hotelNames (): WebdriverIO.Element [] { return $$('a[class^=hotel-name]')};
-   getHotelResultsCount(){
-       console.log(this.hotelResultsCount.getText());
+
+   getHotelResultsCount(): string{
+       return this.hotelResultsCount.getText();
    }
-    getCityTextInResults(){
-       console.log(this.cityTextInResults.getText());
+    getCityTextInResults(): string{
+       return this.cityTextInResults.getText();
    }
-    getWayFinderDetails(){
-       console.log(this.wayFinderDetails.getText());
+    getWayFinderDetails(): string{
+       return this.wayFinderDetails.getText();
    }
    clickStarRating(){
        this.starRatingSort.click();

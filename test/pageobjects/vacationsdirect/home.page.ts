@@ -1,4 +1,6 @@
-export class HomePage {
+import BasePage from "../basePage";
+
+export class HomePage extends BasePage{
 
     private get destination(): WebdriverIO.Element { return $('input[name="Destination"]'); }
     private get checkIn(): WebdriverIO.Element { return $('input[name="CheckIn"]'); }
@@ -27,4 +29,3 @@ export class HomePage {
     }
 }
 
-export default new HomePage();

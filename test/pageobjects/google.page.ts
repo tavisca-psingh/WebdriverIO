@@ -1,17 +1,17 @@
-import Page from "./page";
+import BasePage from "./basePage";
 
-export class GooglePage extends Page {
+export class GooglePage extends BasePage {
 
-     get googleOffered(){
+     get googleOffered(): WebdriverIO.Element {
         return $('div[id=SIvCob]')
     }
-    getTitleOfThePage() {
+    getTitleOfThePage(): string {
         console.log("Title of the page is: "+browser.getTitle());
         return browser.getTitle();
     }
-    async getTextOfTheLocator(locator: WebdriverIO.Element) {
-        console.log(`Text of the locator is: `+await locator.getText());
-        return locator.getText();
+     getTextOfGoogleOffered() : string{
+        console.log(`Text of the locator is: `+ this.googleOffered.getText());
+        return this.googleOffered.getText();
     }
 
     open () {
