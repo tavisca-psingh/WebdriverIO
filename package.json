@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio wdio.conf.js",
+    "test:e2e-runner": "cross-env TS_NODE_PROJECT='./tsconfig.json' ts-node ./test/Runner/runner.ts",
     "lint": "tslint --fix src/**/*.ts",
     "moveJsonFiles": "copyfiles -u 1 src/selectors/* src/config/* lib",
-   "build_tslint": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
-   "build": "rimraf lib && npm run moveJsonFiles && tsc --outDir lib"
+    "build_tslint": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
+    "build": "rimraf lib && npm run moveJsonFiles && tsc --outDir lib"
   },
   "pre-commit": [
     "lint",
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/jdavis61/webdriverio-typescript-examples#readme",
   "dependencies": {
     "@types/mocha": "^8.2.1",
+    "cross-env": "^7.0.3",
     "webdriverio": "^7.1.1"
   },
   "devDependencies": {
