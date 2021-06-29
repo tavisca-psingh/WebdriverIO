@@ -1,42 +1,16 @@
 {
-    //"extends": "../../tsconfig.json",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "allowJs": true,
+  "compilerOptions": {
+      "target": "ES2015",
       "module": "commonjs",
-      "target": "es2019",
-      "lib": ["es2018", "dom"],
+      "esModuleInterop": true,
+      "baseUrl": ".",
       "paths": {
-        "*": [
-          "./*"
-        ]
+          "*": [ "./*" ],
+          "src/*": ["./src/*"]
       },
-      "outDir": "./lib",
-      "types": [
-        "node",
-        "jquery",
-        "@wdio/sync",
-        "@wdio/mocha-framework",
-        "chai-webdriverio"
-      ],
-      "noImplicitAny": false, 
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "allowSyntheticDefaultImports": true,
-      "declaration": true,
-      "declarationMap": true,
-      "sourceMap": true,
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true
-    },
-    "include": [
-      "**/*.spec.ts",
-      "**/*.ts",
-      "**/*json"
-    ],
-    "exclude": [
-      "node_modules",
-      "lib"
-    ]
-  
-  }
+      "types": ["node", "webdriverio/sync", "@wdio/mocha-framework"],
+  },
+  "include": [
+      "./test/**/*.ts"
+  ]
+}
