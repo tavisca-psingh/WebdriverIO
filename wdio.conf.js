@@ -29,6 +29,9 @@ exports.config = {
         ],
         wdio3: [
             './lib/specs/wdio_3.3.e2e.js'
+        ],
+        wdio4: [
+            './lib/specs/wdio_3.4.e2e.js'
         ]
     },
     // Patterns to exclude.
@@ -62,10 +65,10 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 1,
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: ["--start-maximized"],
-        },
+        browserName: 'chrome'
+       // 'goog:chromeOptions': {
+         //   args: ["--start-maximized"],
+        //},
     }],
     //
     // ===================
@@ -133,7 +136,11 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/docs/dot-reporter.html
-    reporters: ['dot', 'spec'],
+    reporters: ['dot', 'spec', ['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
 
     //
     // Options to be passed to Mocha.

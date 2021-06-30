@@ -8,6 +8,8 @@ export class HotelPage {
    protected get hotelNameSort () : WebdriverIO.Element { return $('button[data-qaid=Button_SortByHotelName]')}
    protected get hotelNames (): WebdriverIO.Element [] { return $$('a[class^=hotel-name]')};
 
+   private firstHotelName : string;
+   private startRatingOfFirstHotel : string;
    getHotelResultsCount(): string{
        return this.hotelResultsCount.getText();
    }
@@ -21,15 +23,40 @@ export class HotelPage {
        this.starRatingSort.click();
    }
 
-   getStarRatingOf1stHotel (){
-      console.log(this.starRatingsHotel[0].getAttribute('title'));
+   getStarRatingOf1stHotel (): string{
+      return this.startRatingOfFirstHotel;
    }
 
-   clickHotelName(){
+   setStarRatingOf1stHotel(){
+       this.startRatingOfFirstHotel = this.starRatingsHotel[0].getAttribute('title').trim();
+   }
+
+   clickHotelNameSort(){
        this.hotelNameSort.click();
    }
    getHotelNames(){
 
+   }
+   clickOnFirstHotel(){
+       this.hotelNames[0].click();
+       this.setFirstHotelName();
+       this.setStarRatingOf1stHotel();
+       this.waitForHotelResultsDetailsToLoad(10000);
+       }
+   getFirstHotelName(): string{
+      return this.firstHotelName;
+   }
+
+   setFirstHotelName() {
+    this.firstHotelName = this.hotelNames[0].getText().trim();
+   }
+
+   waitForHotelResultsDetailsToLoad(timeoutInSec: number){
+    browser.waitUntil(()=> $('a[data-scroll-target=hotelInformation]').isDisplayed(),
+    {
+        timeout: timeoutInSec,
+        timeoutMsg: `Page is not loaded after ${timeoutInSec} seconds.`
+    });
    }
 
 }

@@ -5,12 +5,12 @@ export class DateUtil {
         format(new Date(), dateFormat);
     }
 
-    getFutureDate(dateFormat: string , daysToAdd: number) : string
+    getFutureDate({dateFormat, daysToAdd}: {dateFormat:string , daysToAdd:number}) : string
     {
         return format(addDays(new Date(), daysToAdd), dateFormat);
     }
 
-    getPastDate(dateFormat: string , daysToSubtract: number) : string
+    getPastDate({dateFormat, daysToSubtract}: {dateFormat:string , daysToSubtract:number}) : string
     {
         return format(subDays(new Date(), daysToSubtract), dateFormat);
     }
