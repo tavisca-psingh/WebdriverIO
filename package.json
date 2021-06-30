@@ -7,6 +7,7 @@
     "test": "wdio wdio.conf.js",
     "test_suite": "wdio wdio.conf.js --suite $npm_config_suite",
     "test:e2e-runner": "cross-env TS_NODE_PROJECT='./tsconfig.json' ts-node ./test/Runner/runner.ts $npm_config_bsExecutionEnv",
+    "allure_report": "allure generate && allure open",
     "lint": "tslint --fix src/**/*.ts",
     "build_tslint": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
     "build": "rimraf lib && tsc --outDir lib"
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^8.2.2",
+    "@wdio/allure-reporter": "^7.7.3",
     "@wdio/cli": "^7.1.2",
     "@wdio/dot-reporter": "^7.1.1",
     "@wdio/local-runner": "^7.1.2",
