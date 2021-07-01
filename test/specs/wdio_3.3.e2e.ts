@@ -1,33 +1,34 @@
 
 import { HomePage } from '../pageobjects/vacationsdirect/home.page';
 import { HotelPage } from '../pageobjects/vacationsdirect/hotel.page';
-import { DateUtil } from 'test/Utility/dateUtil';
-import { HomePageData } from 'test/data/homePageData';
+import { DateUtil } from '../Utility/dateUtil';
+import { HomePageData } from '../data/homePageData';
 const homePage = new HomePage();
 const hotelPage = new HotelPage();
 const dateUtil = new DateUtil();
 const homePageData = new HomePageData();
+var assert = require('assert');
 describe('Verify functionality on hotel search', () => {
 
     before(() => {
-        homePage.open();
-        console.log('Navigated to browser');
-        homePage.clickOnHotelTab();
-        console.log('Clicked on hotel tab');
-        const twoDaysAfterDate = dateUtil.getFutureDate({dateFormat:'MM/dd/yy', daysToAdd:2});
-        const threeDaysAfterDate = dateUtil.getFutureDate({dateFormat:'MM/dd/yy', daysToAdd:3})
-        homePage.searchDestination(homePageData.hotel.search.destination, twoDaysAfterDate, threeDaysAfterDate, '');
-       
+        homePage.openUrlAndSearchHotel();  
       });
 
     it('Verify star filter', () => {
         hotelPage.clickStarRating();
-        hotelPage.getStarRatingOf1stHotel();
+        assert(hotelPage.getAttributeStarRating().includes("desc"));
+        hotelPage.clickStarRating();
+        assert(hotelPage.getAttributeStarRating().includes("asc"));
+        hotelPage.setStarRatingOf1stHotel();
+        console.log("Star Rating: "+hotelPage.getStarRatingOf1stHotel());
+       // assert(hotelPage.getStarRatingOf1stHotel()==="2 out of 5 total stars");
     });
 
     it ('Verify hotel name filer', ()=> {
-        hotelPage.clickHotelName();
-        hotelPage.getHotelNames();
-
+        hotelPage.clickHotelNameSort();
+        hotelPage.setFirstHotelName();
+        assert(hotelPage.getAttributeHotelNameSort().includes("desc"));
+        console.log("First Hotel Name: "+hotelPage.getFirstHotelName());
+        //assert(hotelPage.getFirstHotelName()==="A Fisher's Inn Motel");
     });
 });

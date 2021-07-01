@@ -9,6 +9,8 @@ export class HotelPage {
    protected get hotelNames (): WebdriverIO.Element [] { return $$('a[class^=hotel-name]')};
    protected get paginationLinks(): WebdriverIO.Element [] {return $$('.results-pagination ul>li button')};
 
+   protected get hotelsListAfterSort(): WebdriverIO.Element {return $('ul[class="hotelresults-list-container results-container"]')};
+
    private firstHotelName : string;
    private startRatingOfFirstHotel : string;
    getHotelResultsCount(): string{
@@ -22,6 +24,11 @@ export class HotelPage {
    }
    clickStarRating(){
        this.starRatingSort.click();
+       this.waitForHotelListToExist(8000);
+   }
+
+   getAttributeStarRating() : string{
+      return this.starRatingSort.getAttribute("aria-describedby");
    }
 
    getStarRatingOf1stHotel (): string{
@@ -40,6 +47,11 @@ export class HotelPage {
 
    clickHotelNameSort(){
        this.hotelNameSort.click();
+       this.waitForHotelListToExist(5000);
+   }
+
+   getAttributeHotelNameSort() : string {
+       return this.hotelNameSort.getAttribute("aria-describedby");
    }
    printHotelNames(){
     this.hotelNames.forEach((hotel) =>{
@@ -70,11 +82,21 @@ export class HotelPage {
     });
    }
 
+   waitForHotelListToExist(timeoutInSec: number){
+       this.hotelsListAfterSort.isDisplayed();
+       this.hotelsListAfterSort.isExisting();
+       this.hotelsListAfterSort.waitForExist({
+           timeout : timeoutInSec
+       })
+
+   }
+
    clickPaginationLinksAndPrintStarRatingsOfAllHotels(){
        console.log("Count of pagination links: "+ this.paginationLinks.length);
        this.paginationLinks.forEach((page)=>{
            page.scrollIntoView();
            page.click();
+           this.waitForHotelListToExist(5000);
            console.log('*******************StarRatings***************************');
            this.printStarRatingsOfHotels();
            console.log('*******************HotelNames***************************');
