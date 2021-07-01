@@ -32,6 +32,9 @@ exports.config = {
         ],
         wdio4: [
             './lib/specs/wdio_3.4.e2e.js'
+        ],
+        wdio5: [
+            './lib/specs/wdio_3.5.e2e.js'
         ]
     },
     // Patterns to exclude.

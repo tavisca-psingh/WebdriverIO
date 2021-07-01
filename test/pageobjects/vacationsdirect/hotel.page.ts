@@ -7,6 +7,7 @@ export class HotelPage {
    protected get starRatingsHotel () : WebdriverIO.Element[] { return $$('dd[class=fi-star-rating]')};
    protected get hotelNameSort () : WebdriverIO.Element { return $('button[data-qaid=Button_SortByHotelName]')}
    protected get hotelNames (): WebdriverIO.Element [] { return $$('a[class^=hotel-name]')};
+   protected get paginationLinks(): WebdriverIO.Element [] {return $$('.results-pagination ul>li button')};
 
    private firstHotelName : string;
    private startRatingOfFirstHotel : string;
@@ -27,6 +28,12 @@ export class HotelPage {
       return this.startRatingOfFirstHotel;
    }
 
+   printStarRatingsOfHotels(){
+       this.starRatingsHotel.forEach((starRating) =>{
+           starRating.scrollIntoView();
+           console.log("Star Rating of hotel is: "+ starRating.getText().trim());
+       })
+       }
    setStarRatingOf1stHotel(){
        this.startRatingOfFirstHotel = this.starRatingsHotel[0].getAttribute('title').trim();
    }
@@ -34,7 +41,11 @@ export class HotelPage {
    clickHotelNameSort(){
        this.hotelNameSort.click();
    }
-   getHotelNames(){
+   printHotelNames(){
+    this.hotelNames.forEach((hotel) =>{
+        hotel.scrollIntoView();
+        console.log("Name of the hotel is: "+ hotel.getText().trim());
+    })
 
    }
    clickOnFirstHotel(){
@@ -57,6 +68,19 @@ export class HotelPage {
         timeout: timeoutInSec,
         timeoutMsg: `Page is not loaded after ${timeoutInSec} seconds.`
     });
+   }
+
+   clickPaginationLinksAndPrintStarRatingsOfAllHotels(){
+       console.log("Count of pagination links: "+ this.paginationLinks.length);
+       this.paginationLinks.forEach((page)=>{
+           page.scrollIntoView();
+           page.click();
+           console.log('*******************StarRatings***************************');
+           this.printStarRatingsOfHotels();
+           console.log('*******************HotelNames***************************');
+           this.printHotelNames();
+           console.log('**********************************************');
+     })
    }
 
 }
