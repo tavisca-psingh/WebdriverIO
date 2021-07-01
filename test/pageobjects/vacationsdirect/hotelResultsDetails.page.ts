@@ -1,6 +1,6 @@
 import BasePage from "../basePage";
 
-export class HotelResultsDetails extends BasePage{
+export class HotelResultsDetailsPage extends BasePage{
 
     protected get hotelName() : WebdriverIO.Element {
          return $('.hotel-details-grid-container>div>h2>span')};

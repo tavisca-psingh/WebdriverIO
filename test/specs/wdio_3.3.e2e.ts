@@ -1,30 +1,29 @@
-
-import { HomePage } from '../pageobjects/vacationsdirect/home.page';
 import { HotelPage } from '../pageobjects/vacationsdirect/hotel.page';
-const homePage = new HomePage();
+import { HotelResultsPage } from '../pageobjects/vacationsdirect/hotelResults.page';
 const hotelPage = new HotelPage();
+const hotelResultsPage = new HotelResultsPage();
 var assert = require('assert');
 describe('Verify functionality on hotel search', () => {
 
     before(() => {
-        homePage.openUrlAndSearchHotel();  
+        hotelPage.openUrlAndSearchHotel();  
       });
 
     it('Verify star filter @Regression', () => {
-        hotelPage.clickStarRating();
-        assert(hotelPage.getAttributeStarRating().includes("desc"));
-        hotelPage.clickStarRating();
-        assert(hotelPage.getAttributeStarRating().includes("asc"));
-        hotelPage.setStarRatingOf1stHotel();
-        console.log("Star Rating: "+hotelPage.getStarRatingOf1stHotel());
-       // assert(hotelPage.getStarRatingOf1stHotel()==="2 out of 5 total stars");
+        hotelResultsPage.clickStarRating();
+        assert(hotelResultsPage.getAttributeStarRating().includes("desc"));
+        hotelResultsPage.clickStarRating();
+        assert(hotelResultsPage.getAttributeStarRating().includes("asc"));
+        hotelResultsPage.setStarRatingOf1stHotel();
+        console.log("Star Rating: "+hotelResultsPage.getStarRatingOf1stHotel());
+       // assert(hotelResultsPage.getStarRatingOf1stHotel()==="2 out of 5 total stars");
     });
 
     it ('Verify hotel name filer @Regression', ()=> {
-        hotelPage.clickHotelNameSort();
-        hotelPage.setFirstHotelName();
-        assert(hotelPage.getAttributeHotelNameSort().includes("desc"));
-        console.log("First Hotel Name: "+hotelPage.getFirstHotelName());
-        //assert(hotelPage.getFirstHotelName()==="A Fisher's Inn Motel");
+        hotelResultsPage.clickHotelNameSort();
+        hotelResultsPage.setFirstHotelName();
+        assert(hotelResultsPage.getAttributeHotelNameSort().includes("desc"));
+        console.log("First Hotel Name: "+hotelResultsPage.getFirstHotelName());
+        //assert(hotelResultsPage.getFirstHotelName()==="A Fisher's Inn Motel");
     });
 });
