@@ -7,12 +7,12 @@ describe('Verify functionality on google.com', () => {
   before(() => {
    googlePage.open();
   });
-    it('Verify title of the page',() =>{
+    it('Verify title of the page @Smoke',() =>{
         console.log(googlePage.getTitleOfThePage());
         assert(googlePage.getTitleOfThePage() === "Google");
     });
 
-    it('Verify content of the page', () =>{
+    it('Verify content of the page @Smoke', () =>{
         console.log(googlePage.getTextOfGoogleOffered());
         assert(googlePage.getTextOfGoogleOffered().includes("Google offered in:"));
      });

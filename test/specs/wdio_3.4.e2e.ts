@@ -13,7 +13,7 @@ describe('Verify functionality on hotel search', () => {
     before(() => {
     homePage.openUrlAndSearchHotel();
       });
-    it('Verify hotel name and star rating of any random selected hotel on hotel details page', () => {
+    it('Verify hotel name and star rating of any random selected hotel on hotel details page @Smoke', () => {
         hotelPage.clickOnFirstHotel();
         console.log("hotelResultsDetails.getHotelName(): "+ hotelResultsDetails.getHotelName());
         console.log("hotelPage.getStarRatings() "+hotelPage.getFirstHotelName());
@@ -25,7 +25,7 @@ describe('Verify functionality on hotel search', () => {
         assert(hotelResultsDetails.getStarRatings() === hotelPage.getStarRatingOf1stHotel());
     });
 
-    it('Verify room availability of selected hotel', () => {
+    it('Verify room availability of selected hotel @Regression', () => {
         assert(hotelResultsDetails.getRoomAvailablesCount() > 0);
     });
 });

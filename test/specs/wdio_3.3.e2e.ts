@@ -1,12 +1,8 @@
 
 import { HomePage } from '../pageobjects/vacationsdirect/home.page';
 import { HotelPage } from '../pageobjects/vacationsdirect/hotel.page';
-import { DateUtil } from '../Utility/dateUtil';
-import { HomePageData } from '../data/homePageData';
 const homePage = new HomePage();
 const hotelPage = new HotelPage();
-const dateUtil = new DateUtil();
-const homePageData = new HomePageData();
 var assert = require('assert');
 describe('Verify functionality on hotel search', () => {
 
@@ -14,7 +10,7 @@ describe('Verify functionality on hotel search', () => {
         homePage.openUrlAndSearchHotel();  
       });
 
-    it('Verify star filter', () => {
+    it('Verify star filter @Regression', () => {
         hotelPage.clickStarRating();
         assert(hotelPage.getAttributeStarRating().includes("desc"));
         hotelPage.clickStarRating();
@@ -24,7 +20,7 @@ describe('Verify functionality on hotel search', () => {
        // assert(hotelPage.getStarRatingOf1stHotel()==="2 out of 5 total stars");
     });
 
-    it ('Verify hotel name filer', ()=> {
+    it ('Verify hotel name filer @Regression', ()=> {
         hotelPage.clickHotelNameSort();
         hotelPage.setFirstHotelName();
         assert(hotelPage.getAttributeHotelNameSort().includes("desc"));

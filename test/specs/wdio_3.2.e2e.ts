@@ -13,14 +13,14 @@ describe('Verify functionality on hotel search', () => {
     before(() => {
     homePage.openUrlAndSearchHotel();
       });
-    it('Verify result present on the page have same search location.', () => {
+    it('Verify result present on the page have same search location. @Regression', () => {
         assert( hotelPage.getCityTextInResults().includes(homePageData.hotel.search.destination.split("," ,1)[0]));
     });
 
-    it('Verify hotel search results', () => {
+    it('Verify hotel search results @Smoke', () => {
         assert( hotelPage.getHotelResultsCount().includes("171"));
     });
-    it('Verify wayfinder results after search', () => {
+    it('Verify wayfinder results after search @Smoke', () => {
         assert(hotelPage.getWayFinderDetails().includes("Las Vegas, NV (LAS)"));
         console.log("homePage.checkInActualValue "+homePage.checkInActualValue);
         console.log("homePage.checkOutActualValue "+homePage.checkOutActualValue);
