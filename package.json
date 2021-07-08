@@ -6,7 +6,7 @@
   "scripts": {
     "test": "wdio wdio.conf.js",
     "test_suite": "wdio wdio.conf.js --suite $npm_config_suite",
-    "test_smoke" : "wdio wdio.conf.js --mochaOpts.grep=@Smoke",
+    "test_smoke": "wdio wdio.conf.js --mochaOpts.grep=@Smoke",
     "test_regression": "wdio wdio.conf.js --mochaOpts.grep=@Regression",
     "test:e2e-runner": "cross-env TS_NODE_PROJECT='./tsconfig.json' ts-node ./test/Runner/runner.ts $npm_config_bsExecutionEnv",
     "allure_report": "allure generate && allure open",
@@ -50,6 +50,7 @@
     "copyfiles": "^2.4.1",
     "date-fns": "^2.22.1",
     "it-each": "^0.4.0",
+    "log4js": "^6.3.0",
     "mocha-expect": "^1.0.3",
     "pre-commit": "^1.2.2",
     "rimraf": "^3.0.2",
